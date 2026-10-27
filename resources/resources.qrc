@@ -1,0 +1,15 @@
+<RCC> <!-- Qt 资源集合的根 -->
+    <qresource prefix="/"> <!-- 用根路径访问这些文件 -->
+        <file>styles/dark.qss</file> <!-- 深色界面样式 -->
+        <file>icons/app.png</file> <!-- 程序图标 -->
+        <file>icons/check.svg</file> <!-- 复选框勾选标记 -->
+        <file>icons/scroll-handle.png</file> <!-- 滚动条滑块 -->
+        <file>icons/scroll-handle-hover.png</file> <!-- 滚动条滑块悬停 -->
+        <file>icons/scroll-handle-pressed.png</file> <!-- 滚动条滑块按下 -->
+        <file>icons/scroll-handle-disabled.png</file> <!-- 滚动条滑块禁用 -->
+        <file>shaders/ocean.vert</file> <!-- 海面顶点着色器 -->
+        <file>shaders/ocean.frag</file> <!-- 海面片元着色器 -->
+        <file>shaders/video.vert</file> <!-- 视频顶点着色器 -->
+        <file>shaders/video.frag</file> <!-- 视频片元着色器 -->
+    </qresource> <!-- 结束这一组资源 -->
+</RCC> <!-- 结束资源文件 -->

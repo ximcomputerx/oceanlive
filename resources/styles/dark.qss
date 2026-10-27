@@ -1,0 +1,382 @@
+* { /* 全局默认字体与颜色 */
+    font-family: "Microsoft YaHei UI", "Segoe UI"; /* 界面字体，雅黑优先 */
+    font-size: 10pt; /* 默认字号 */
+    color: #e6ebf2; /* 默认文字颜色 */
+    outline: none; /* 去掉焦点轮廓 */
+} /* 结束全局默认 */
+
+QMainWindow, QDialog, QWidget#central, QWidget#settingsRoot { /* 主窗口、对话框和根部件 */
+    background: #161b22; /* 深色背景 */
+} /* 结束根背景 */
+
+QFrame#headerFrame { /* 顶栏框架 */
+    background: #1c232d; /* 顶栏背景 */
+    border: 1px solid #2c3542; /* 顶栏边框 */
+    border-radius: 0px; /* 顶栏圆角 */
+} /* 结束顶栏 */
+
+QFrame#previewFrame, QGroupBox { /* 预览框与分组框 */
+    background: #1c232d; /* 分组背景 */
+    border: 1px solid #2c3542; /* 分组边框 */
+    border-radius: 0px; /* 分组圆角 */
+    margin-top: 12px; /* 为标题留出上边距 */
+    padding: 6px 5px 5px 5px; /* 分组内边距 */
+    font-weight: 600; /* 标题字重 */
+} /* 结束分组外观 */
+
+QGroupBox::title { /* 分组标题 */
+    subcontrol-origin: margin; /* 标题放在边距区 */
+    left: 14px; /* 标题左偏移 */
+    padding: 0 6px; /* 标题左右留白 */
+    color: #9eb0c4; /* 标题颜色 */
+} /* 结束分组标题 */
+
+QLabel#titleLabel { /* 主标题 */
+    font-size: 18pt; /* 标题字号 */
+    font-weight: 700; /* 标题加粗 */
+    color: #f4f7fb; /* 标题颜色 */
+} /* 结束主标题 */
+
+QLabel#versionLabel, QLabel#statusHint, QLabel#autostartPathLabel { /* 次要说明文字 */
+    color: #8ea0b5; /* 次要文字颜色 */
+} /* 结束次要文字 */
+
+QLabel#statusLabel { /* 运行状态文字 */
+    font-weight: 700; /* 状态加粗 */
+    color: #8fd0c4; /* 状态颜色 */
+} /* 结束状态文字 */
+
+QPushButton { /* 普通按钮 */
+    background: #2a3442; /* 按钮背景 */
+    border: 1px solid #3a4656; /* 按钮边框 */
+    border-radius: 0px; /* 按钮圆角 */
+    padding: 7px 14px; /* 按钮内边距 */
+    min-height: 18px; /* 按钮最小高度 */
+} /* 结束普通按钮 */
+
+QPushButton:hover { /* 按钮悬停 */
+    background: #344255; /* 悬停背景 */
+    border-color: #4d6278; /* 悬停边框 */
+} /* 结束按钮悬停 */
+
+QPushButton:pressed { /* 按钮按下 */
+    background: #243140; /* 按下背景 */
+} /* 结束按钮按下 */
+
+QPushButton:disabled { /* 禁用按钮 */
+    color: #6d7b8c; /* 禁用文字色 */
+    background: #222933; /* 禁用背景 */
+    border-color: #2c3542; /* 禁用边框 */
+} /* 结束禁用按钮 */
+
+QPushButton#startButton, QPushButton#resumeButton { /* 启动与恢复按钮 */
+    background: #1c7c8a; /* 强调背景 */
+    border-color: #2498a8; /* 强调边框 */
+    color: #f5fffe; /* 强调文字色 */
+    font-weight: 700; /* 强调加粗 */
+} /* 结束启动与恢复 */
+
+QPushButton#startButton:hover, QPushButton#resumeButton:hover { /* 启动与恢复悬停 */
+    background: #2293a3; /* 悬停强调背景 */
+} /* 结束启动悬停 */
+
+QPushButton#stopButton { /* 停止按钮 */
+    background: #6d3a3a; /* 停止背景 */
+    border-color: #8a4d4d; /* 停止边框 */
+    color: #fff6f6; /* 停止文字色 */
+} /* 结束停止按钮 */
+
+QPushButton#settingsButton { /* 设置按钮 */
+    padding: 7px 16px; /* 设置按钮内边距 */
+} /* 结束设置按钮 */
+
+QScrollArea, QScrollArea > QWidget > QWidget { /* 滚动区域及内容 */
+    background: transparent; /* 透明背景 */
+    border: none; /* 去掉边框 */
+} /* 结束滚动区域 */
+
+QComboBox, QPlainTextEdit, QListWidget, QLineEdit { /* 输入与列表控件 */
+    background: #12171e; /* 输入背景 */
+    border: 1px solid #334050; /* 输入边框 */
+    border-radius: 0px; /* 输入圆角 */
+    padding: 4px 8px; /* 输入内边距 */
+    selection-background-color: #1c7c8a; /* 选中背景 */
+    selection-color: #ffffff; /* 选中文字 */
+} /* 结束输入控件 */
+
+QComboBox::drop-down { /* 下拉箭头区域 */
+    border: none; /* 去掉箭头区边框 */
+    width: 22px; /* 箭头区宽度 */
+} /* 结束下拉箭头 */
+
+QComboBox QAbstractItemView { /* 下拉列表弹出层 */
+    background: #1c232d; /* 弹出层背景 */
+    border: 1px solid #3a4656; /* 弹出层边框 */
+    selection-background-color: #1c7c8a; /* 弹出层选中色 */
+} /* 结束下拉弹出层 */
+
+QMenu { /* 托盘右键菜单和主题子菜单 */
+    background: #1c232d; /* 不透明深色底，盖住系统浅色菜单 */
+    border: 1px solid #3a4656; /* 与下拉弹出层相同的边框 */
+    border-radius: 0px; /* 菜单直角 */
+    padding: 4px 0px; /* 菜单上下留白 */
+} /* 结束菜单面板 */
+
+QMenu::item { /* 菜单项 */
+    padding: 6px 28px 6px 12px; /* 留出右侧子菜单箭头和左侧勾 */
+    background: transparent; /* 项本身不铺浅色底 */
+    color: #e6ebf2; /* 菜单文字 */
+} /* 结束菜单项 */
+
+QMenu::item:selected { /* 悬停或键盘选中的菜单项 */
+    background: #1c7c8a; /* 与按钮强调色相同 */
+    color: #ffffff; /* 选中文字 */
+} /* 结束选中菜单项 */
+
+QMenu::item:disabled { /* 当前状态不可用的菜单项 */
+    color: #6d7b8c; /* 与禁用按钮相同的文字色 */
+    background: transparent; /* 禁用项不铺底 */
+} /* 结束禁用菜单项 */
+
+QMenu::separator { /* 退出上方的分隔线 */
+    height: 1px; /* 分隔线高度 */
+    background: #2c3542; /* 分隔线颜色 */
+    margin: 4px 8px; /* 分隔线左右留白 */
+} /* 结束分隔线 */
+
+QMenu::indicator { /* 主题子菜单的勾选框 */
+    width: 16px; /* 勾选框宽度 */
+    height: 16px; /* 勾选框高度 */
+} /* 结束菜单勾选框 */
+
+QMenu::indicator:unchecked { /* 未选中的主题 */
+    image: none; /* 不画系统浅色空框 */
+} /* 结束未选菜单勾 */
+
+QMenu::indicator:checked { /* 当前主题 */
+    image: url(:/icons/check.svg); /* 与复选框相同的白色勾 */
+} /* 结束选中菜单勾 */
+
+QSlider {
+    min-height: 18px;   /* 关键：≥ 滑块高度(16) + 上下边距，否则溢出被裁 */
+}
+
+QSlider::groove:horizontal { /* 水平滑槽 */
+    height: 4px; /* 滑槽高度 */
+    background: #2e3a48; /* 滑槽颜色 */
+    border-radius: 2px; /* 滑槽圆角 */
+} /* 结束滑槽 */
+
+QSlider::handle:horizontal { /* 水平滑块 */
+    width: 16px; /* 滑块宽度 */
+    height: 16px; /* 滑块高度 */
+    margin: -6px 0; /* 滑块垂直溢出 */
+    border-radius: 8px; /* 滑块圆形 */
+    background: #3ec0d4; /* 滑块颜色 */
+} /* 结束滑块 */
+
+QSlider::sub-page:horizontal { /* 滑条已选部分 */
+    background: #1c7c8a; /* 已选段颜色 */
+    border-radius: 2px; /* 已选段圆角 */
+} /* 结束已选段 */
+
+QCheckBox, QRadioButton { /* 复选框与单选框 */
+    spacing: 8px; /* 指示器与文字间距 */
+} /* 结束勾选控件 */
+
+QCheckBox:disabled, QRadioButton:disabled { /* 禁用的勾选控件 */
+    color: #6d7b8c; /* 禁用文字色，与禁用按钮一致 */
+} /* 结束禁用勾选 */
+
+QCheckBox::indicator { /* 复选框指示器 */
+    width: 16px; /* 指示器宽度 */
+    height: 16px; /* 指示器高度 */
+    border: 1px solid #3a4656; /* 默认边，压住系统浅色框 */
+    border-radius: 2px; /* 与滑槽相同的小圆角 */
+    background: #12171e; /* 与输入框相同的底色 */
+    image: none; /* 未选时不画系统勾 */
+} /* 结束复选框指示器 */
+
+QCheckBox::indicator:unchecked { /* 未选复选框 */
+    image: none; /* 再明确一次，避免 Windows 样式叠勾 */
+} /* 结束未选复选框 */
+
+QCheckBox::indicator:hover { /* 复选框悬停 */
+    border-color: #4d6278; /* 悬停边 */
+    background: #1c232d; /* 悬停底 */
+} /* 结束复选框悬停 */
+
+QCheckBox::indicator:pressed { /* 复选框按下 */
+    background: #243140; /* 按下底 */
+} /* 结束复选框按下 */
+
+QCheckBox::indicator:focus { /* 复选框键盘焦点 */
+    border-color: #3ec0d4; /* 焦点边，全局已去掉轮廓线 */
+} /* 结束复选框焦点 */
+
+QCheckBox::indicator:checked { /* 选中复选框 */
+    background: #1c7c8a; /* 选中填充 */
+    border-color: #2498a8; /* 选中边，盖过焦点色 */
+    image: url(:/icons/check.svg); /* 白色勾 */
+} /* 结束选中复选框 */
+
+QCheckBox::indicator:checked:hover { /* 选中复选框悬停 */
+    background: #2293a3; /* 选中悬停填充 */
+} /* 结束选中悬停 */
+
+QCheckBox::indicator:checked:pressed { /* 选中复选框按下 */
+    background: #176974; /* 选中按下填充 */
+} /* 结束选中按下 */
+
+QCheckBox::indicator:disabled { /* 禁用复选框 */
+    background: #222933; /* 禁用底 */
+    border-color: #2c3542; /* 禁用边 */
+} /* 结束禁用复选框 */
+
+QCheckBox::indicator:checked:disabled { /* 禁用且选中的复选框 */
+    background: #1a4550; /* 压暗的选中底 */
+    border-color: #2c3542; /* 禁用边 */
+    image: url(:/icons/check.svg); /* 勾仍用同一张图 */
+} /* 结束禁用选中 */
+
+QRadioButton::indicator { /* 单选框指示器 */
+    width: 16px; /* 指示器宽度 */
+    height: 16px; /* 指示器高度 */
+    border: 1px solid #3a4656; /* 默认边 */
+    border-radius: 8px; /* 16px 尺寸上的正圆 */
+    background: #12171e; /* 空心圆的底 */
+    image: none; /* 不使用系统圆点 */
+} /* 结束单选指示器 */
+
+QRadioButton::indicator:unchecked { /* 未选单选框 */
+    image: none; /* 避免 Windows 样式叠圆点 */
+} /* 结束未选单选 */
+
+QRadioButton::indicator:hover { /* 单选框悬停 */
+    border-color: #4d6278; /* 悬停边 */
+    background: #1c232d; /* 悬停底 */
+} /* 结束单选悬停 */
+
+QRadioButton::indicator:pressed { /* 单选框按下 */
+    background: #243140; /* 按下底 */
+} /* 结束单选按下 */
+
+QRadioButton::indicator:focus { /* 单选框键盘焦点 */
+    border-color: #3ec0d4; /* 焦点边 */
+} /* 结束单选焦点 */
+
+QRadioButton::indicator:checked { /* 选中单选框 */
+    border: 1px solid #2498a8; /* 选中边 */
+    image: none; /* 圆点由渐变画出 */
+    background: qradialgradient(cx:0.5, cy:0.5, radius:0.45, fx:0.5, fy:0.5, stop:0 #3ec0d4, stop:0.42 #3ec0d4, stop:0.50 #12171e, stop:1 #12171e); /* 中心亮点，外圈保持暗底 */
+} /* 结束选中单选 */
+
+QRadioButton::indicator:checked:hover { /* 选中单选框悬停 */
+    border-color: #3ec0d4; /* 只提亮边，圆点颜色不动 */
+} /* 结束选中单选悬停 */
+
+QRadioButton::indicator:disabled { /* 禁用单选框 */
+    background: #222933; /* 禁用底 */
+    border-color: #2c3542; /* 禁用边 */
+} /* 结束禁用单选 */
+
+QRadioButton::indicator:checked:disabled { /* 禁用且选中的单选框 */
+    border: 1px solid #2c3542; /* 禁用边 */
+    image: none; /* 仍不使用图片 */
+    background: qradialgradient(cx:0.5, cy:0.5, radius:0.45, fx:0.5, fy:0.5, stop:0 #6d7b8c, stop:0.42 #6d7b8c, stop:0.50 #222933, stop:1 #222933); /* 灰色圆点 */
+} /* 结束禁用选中单选 */
+
+QListWidget#pageList { /* 设置页列表 */
+    background: #141a22; /* 页列表背景 */
+    border: none; /* 页列表无边框 */
+    padding: 6px; /* 页列表内边距 */
+} /* 结束页列表 */
+
+QListWidget#pageList::item { /* 设置页条目 */
+    padding: 10px 12px; /* 条目内边距 */
+    border-radius: 0px; /* 条目圆角 */
+    color: #c5d0dc; /* 条目文字色 */
+} /* 结束页条目 */
+
+QListWidget#pageList::item:selected { /* 选中的设置页 */
+    background: #1c7c8a; /* 选中背景 */
+    color: white; /* 选中文字 */
+} /* 结束选中页 */
+
+QPlainTextEdit#diagText, QLabel#aboutText { /* 诊断与关于文字 */
+    font-family: "Cascadia Mono", "Consolas", "Microsoft YaHei UI"; /* 等宽字体，雅黑兜底 */
+    font-size: 9pt; /* 诊断字号 */
+    color: #c5d4e4; /* 诊断文字色 */
+} /* 结束诊断文字 */
+
+QScrollBar:vertical { /* 垂直滚动条 */
+    background: transparent; /* 平时不画轨道 */
+    width: 10px; /* 滚动条宽度 */
+    margin: 0px; /* 滑块圆角留在这条宽度里 */
+    border: none; /* 槽无边框 */
+} /* 结束垂直滚动条 */
+
+QScrollBar:horizontal { /* 水平滚动条 */
+    background: transparent; /* 平时不画轨道 */
+    height: 10px; /* 滚动条高度 */
+    margin: 0px; /* 滑块圆角留在这条高度里 */
+    border: none; /* 槽无边框 */
+} /* 结束水平滚动条 */
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal { /* 滚动滑块 */
+    background: transparent; /* 颜色来自圆角图片，纯色圆角在这里不生效 */
+    border-image: url(:/icons/scroll-handle.png) 4 4 4 4 stretch stretch; /* 两端保持半圆，中间拉伸 */
+    border-width: 4px; /* 与图片四角切片一致 */
+} /* 结束滚动滑块 */
+
+QScrollBar::handle:vertical { /* 垂直滑块尺寸 */
+    min-height: 28px; /* 滑块最小高度 */
+} /* 结束垂直滑块尺寸 */
+
+QScrollBar::handle:horizontal { /* 水平滑块尺寸 */
+    min-width: 28px; /* 滑块最小宽度 */
+} /* 结束水平滑块尺寸 */
+
+QScrollBar::handle:vertical:hover, QScrollBar::handle:horizontal:hover { /* 滑块悬停 */
+    border-image: url(:/icons/scroll-handle-hover.png) 4 4 4 4 stretch stretch; /* 悬停变浅 */
+} /* 结束滑块悬停 */
+
+QScrollBar::handle:vertical:pressed, QScrollBar::handle:horizontal:pressed { /* 滑块按下 */
+    border-image: url(:/icons/scroll-handle-pressed.png) 4 4 4 4 stretch stretch; /* 按下使用强调色 */
+} /* 结束滑块按下 */
+
+QScrollBar::handle:vertical:disabled, QScrollBar::handle:horizontal:disabled { /* 禁用滑块 */
+    border-image: url(:/icons/scroll-handle-disabled.png) 4 4 4 4 stretch stretch; /* 禁用滑块颜色 */
+} /* 结束禁用滑块 */
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { /* 滚动条箭头按钮 */
+    width: 0; /* 箭头不占宽度 */
+    height: 0; /* 箭头不占高度 */
+    border: none; /* 去掉箭头边框 */
+    background: none; /* 去掉箭头底色 */
+} /* 结束箭头按钮 */
+
+QScrollBar::up-arrow, QScrollBar::down-arrow, QScrollBar::left-arrow, QScrollBar::right-arrow { /* 箭头图形 */
+    width: 0; /* 箭头图形不占宽度 */
+    height: 0; /* 箭头图形不占高度 */
+    background: none; /* 不画箭头 */
+} /* 结束箭头图形 */
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal { /* 滑块两侧翻页区 */
+    background: none; /* 去掉系统浅色槽 */
+} /* 结束翻页区 */
+
+QAbstractScrollArea::corner { /* 两条滚动条交汇的角 */
+    background: transparent; /* 角块透明 */
+} /* 结束滚动条交角 */
+
+QToolTip { /* 工具提示 */
+    background: #243140; /* 提示背景 */
+    color: #f4f7fb; /* 提示文字 */
+    border: 1px solid #3a4656; /* 提示边框 */
+    padding: 4px 6px; /* 提示内边距 */
+} /* 结束工具提示 */
+
+QDialogButtonBox QPushButton { /* 对话框标准按钮 */
+    min-width: 84px; /* 标准按钮最小宽度 */
+} /* 结束标准按钮 */

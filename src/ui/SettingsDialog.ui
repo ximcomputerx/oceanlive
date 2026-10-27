@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- 文件头声明 -->
+<ui version="4.0"> <!-- 界面描述根节点 -->
+ <class>SettingsDialog</class> <!-- 对话框类名 -->
+ <widget class="QDialog" name="SettingsDialog"> <!-- 设置对话框部件 -->
+  <property name="geometry"> <!-- 窗口几何属性 -->
+   <rect><x>0</x><y>0</y><width>820</width><height>680</height></rect> <!-- 初始位置和大小 -->
+  </property> <!-- 结束几何属性 -->
+  <property name="windowTitle"><string>OceanLive 设置</string></property> <!-- 窗口标题 -->
+  <property name="minimumSize"><size><width>760</width><height>560</height></size></property> <!-- 最小尺寸 -->
+  <layout class="QVBoxLayout" name="dialogLayout"> <!-- 对话框垂直布局 -->
+   <item> <!-- 主体布局项 -->
+    <layout class="QHBoxLayout" name="bodyLayout"> <!-- 左右分栏 -->
+     <item> <!-- 页列表项 -->
+      <widget class="QListWidget" name="pageList"> <!-- 左侧页面列表 -->
+       <property name="minimumSize"><size><width>180</width><height>0</height></size></property> <!-- 页列表最小尺寸，宽度保持不变 -->
+       <property name="maximumSize"><size><width>180</width><height>16777215</height></size></property> <!-- 页列表最大宽度 -->
+       <item><property name="text"><string>通用</string></property></item> <!-- 通用页签 -->
+       <item><property name="text"><string>显示器</string></property></item> <!-- 显示器页签 -->
+       <item><property name="text"><string>动画</string></property></item> <!-- 动画页签 -->
+       <item><property name="text"><string>性能</string></property></item> <!-- 性能页签 -->
+       <item><property name="text"><string>开机启动</string></property></item> <!-- 开机启动页签 -->
+       <item><property name="text"><string>关于</string></property></item> <!-- 关于页签 -->
+      </widget> <!-- 结束页面列表 -->
+     </item> <!-- 结束页列表项 -->
+     <item> <!-- 右侧页面项 -->
+      <widget class="QStackedWidget" name="pageStack"> <!-- 页面堆叠 -->
+       <widget class="QWidget" name="generalPage"> <!-- 通用页部件 -->
+        <layout class="QVBoxLayout" name="generalLayout"> <!-- 通用页垂直布局 -->
+         <item><widget class="QCheckBox" name="resumeOnLaunchCheck"><property name="text"><string>启动软件时恢复上次壁纸</string></property></widget></item> <!-- 启动时恢复上次壁纸 -->
+         <item><widget class="QCheckBox" name="startMinimizedCheck"><property name="text"><string>启动后最小化到系统托盘</string></property></widget></item> <!-- 启动后最小化到托盘 -->
+         <item><widget class="QCheckBox" name="showDiagnosticsCheck"><property name="text"><string>在主窗口显示渲染诊断</string></property></widget></item> <!-- 主窗口显示渲染诊断 -->
+         <item> <!-- 语言行项 -->
+          <layout class="QHBoxLayout" name="languageLayout"> <!-- 语言行水平布局 -->
+           <item><widget class="QLabel" name="languageCaption"><property name="text"><string>界面语言</string></property></widget></item> <!-- 界面语言标签 -->
+           <item><widget class="QComboBox" name="languageCombo"/></item> <!-- 语言下拉框 -->
+          </layout> <!-- 结束语言行 -->
+         </item> <!-- 结束语言项 -->
+         <item><widget class="QLabel" name="generalHint"><property name="wordWrap"><bool>true</bool></property><property name="text"><string>关闭主窗口会缩到托盘，不会退出。请使用托盘菜单中的退出。</string></property></widget></item> <!-- 关闭窗口缩到托盘的说明 -->
+         <item><spacer name="generalSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>20</height></size></property></spacer></item> <!-- 通用页底部弹簧 -->
+        </layout> <!-- 结束通用页布局 -->
+       </widget> <!-- 结束通用页 -->
+       <widget class="QWidget" name="displayPage"> <!-- 显示器页部件 -->
+        <layout class="QVBoxLayout" name="displayLayout"> <!-- 显示器页垂直布局 -->
+         <item><widget class="QRadioButton" name="monitorAllRadio"><property name="text"><string>所有显示器</string></property></widget></item> <!-- 所有显示器单选 -->
+         <item><widget class="QRadioButton" name="monitorPrimaryRadio"><property name="text"><string>仅主显示器</string></property></widget></item> <!-- 仅主显示器单选 -->
+         <item><widget class="QRadioButton" name="monitorSpecificRadio"><property name="text"><string>指定显示器</string></property></widget></item> <!-- 指定显示器单选 -->
+         <item><widget class="QListWidget" name="monitorList"/></item> <!-- 指定显示器列表 -->
+         <item><widget class="QLabel" name="displayHint"><property name="wordWrap"><bool>true</bool></property><property name="text"><string>每个显示器使用独立渲染窗口，以匹配不同分辨率、DPI 和负坐标。显示器变化后会自动重新挂接。</string></property></widget></item> <!-- 多显示器挂接说明 -->
+        </layout> <!-- 结束显示器页布局 -->
+       </widget> <!-- 结束显示器页 -->
+       <widget class="QWidget" name="animationPage"> <!-- 动画页部件 -->
+        <layout class="QVBoxLayout" name="animationPageLayout"> <!-- 动画页垂直布局 -->
+         <item> <!-- 滚动区域项 -->
+          <widget class="QScrollArea" name="animationScroll"> <!-- 动画参数滚动区 -->
+           <property name="widgetResizable"><bool>true</bool></property> <!-- 内容随区域缩放 -->
+           <property name="frameShape"><enum>QFrame::NoFrame</enum></property> <!-- 滚动区无边框 -->
+           <widget class="QWidget" name="animationContents"> <!-- 滚动内容部件 -->
+            <layout class="QFormLayout" name="animationForm"> <!-- 动画参数表单 -->
+             <item row="0" column="0"><widget class="QLabel" name="modeCaption"><property name="text"><string>画面来源</string></property></widget></item> <!-- 画面来源标签 -->
+             <item row="0" column="1"><widget class="QComboBox" name="modeCombo"/></item> <!-- 画面来源下拉框 -->
+             <item row="1" column="0"><widget class="QLabel" name="settingsThemeCaption"><property name="text"><string>主题</string></property></widget></item> <!-- 主题标签 -->
+             <item row="1" column="1"><widget class="QComboBox" name="settingsThemeCombo"/></item> <!-- 主题下拉框 -->
+             <item row="2" column="0"><widget class="QLabel" name="animSpeedCaption"><property name="text"><string>波浪速度</string></property></widget></item> <!-- 波浪速度标签 -->
+             <item row="2" column="1"> <!-- 波浪速度这一行 -->
+              <layout class="QHBoxLayout" name="animSpeedRow"> <!-- 速度行水平布局 -->
+               <item><widget class="QSlider" name="animSpeedSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>25</number></property><property name="maximum"><number>200</number></property></widget></item> <!-- 波浪速度滑条 -->
+               <item><widget class="QLabel" name="animSpeedLabel"><property name="text"><string>1.00x</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 波浪速度数值 -->
+              </layout> <!-- 结束速度行 -->
+             </item> <!-- 结束速度项 -->
+             <item row="3" column="0"><widget class="QLabel" name="waveCaption"><property name="text"><string>波浪强度</string></property></widget></item> <!-- 波浪强度标签 -->
+             <item row="3" column="1"> <!-- 波浪强度这一行 -->
+              <layout class="QHBoxLayout" name="waveRow"> <!-- 强度行水平布局 -->
+               <item><widget class="QSlider" name="settingsWaveSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>20</number></property><property name="maximum"><number>200</number></property></widget></item> <!-- 波浪强度滑条 -->
+               <item><widget class="QLabel" name="settingsWaveLabel"><property name="text"><string>1.00</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 波浪强度数值 -->
+              </layout> <!-- 结束强度行 -->
+             </item> <!-- 结束强度项 -->
+             <item row="4" column="0"><widget class="QLabel" name="windCaption"><property name="text"><string>风力强度</string></property></widget></item> <!-- 风力强度标签 -->
+             <item row="4" column="1"> <!-- 风力这一行 -->
+              <layout class="QHBoxLayout" name="windRow"> <!-- 风力行水平布局 -->
+               <item><widget class="QSlider" name="windSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>0</number></property><property name="maximum"><number>200</number></property></widget></item> <!-- 风力滑条 -->
+               <item><widget class="QLabel" name="windLabel"><property name="text"><string>1.00</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 风力数值 -->
+              </layout> <!-- 结束风力行 -->
+             </item> <!-- 结束风力项 -->
+             <item row="5" column="0"><widget class="QLabel" name="windAngleCaption"><property name="text"><string>风浪方向</string></property></widget></item> <!-- 风浪方向标签 -->
+             <item row="5" column="1"> <!-- 风向这一行 -->
+              <layout class="QHBoxLayout" name="windAngleRow"> <!-- 风向行水平布局 -->
+               <item><widget class="QSlider" name="windAngleSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>-180</number></property><property name="maximum"><number>180</number></property></widget></item> <!-- 风向滑条 -->
+               <item><widget class="QLabel" name="windAngleLabel"><property name="text"><string>8°</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 风向角度 -->
+              </layout> <!-- 结束风向行 -->
+             </item> <!-- 结束风向项 -->
+             <item row="6" column="0"><widget class="QLabel" name="sunAzimuthCaption"><property name="text"><string>太阳水平位置</string></property></widget></item> <!-- 太阳水平位置标签 -->
+             <item row="6" column="1"> <!-- 太阳水平位置这一行 -->
+              <layout class="QHBoxLayout" name="sunAzimuthRow"> <!-- 水平位置行布局 -->
+               <item><widget class="QSlider" name="sunAzimuthSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>-70</number></property><property name="maximum"><number>70</number></property></widget></item> <!-- 太阳水平位置滑条 -->
+               <item><widget class="QLabel" name="sunAzimuthLabel"><property name="text"><string>18°</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 水平角度数值 -->
+              </layout> <!-- 结束水平位置行 -->
+             </item> <!-- 结束水平位置项 -->
+             <item row="7" column="0"><widget class="QLabel" name="sunElevationCaption"><property name="text"><string>太阳高度</string></property></widget></item> <!-- 太阳高度标签 -->
+             <item row="7" column="1"> <!-- 太阳高度这一行 -->
+              <layout class="QHBoxLayout" name="sunElevationRow"> <!-- 高度行布局 -->
+               <item><widget class="QSlider" name="sunElevationSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>2</number></property><property name="maximum"><number>35</number></property></widget></item> <!-- 太阳高度滑条 -->
+               <item><widget class="QLabel" name="sunElevationLabel"><property name="text"><string>11°</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 高度角度数值 -->
+              </layout> <!-- 结束高度行 -->
+             </item> <!-- 结束高度项 -->
+             <item row="8" column="0"><widget class="QLabel" name="sunIntensityCaption"><property name="text"><string>直射阳光</string></property></widget></item> <!-- 直射阳光标签 -->
+             <item row="8" column="1"> <!-- 直射阳光这一行 -->
+              <layout class="QHBoxLayout" name="sunIntensityRow"> <!-- 阳光行布局 -->
+               <item><widget class="QSlider" name="sunIntensitySlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>20</number></property><property name="maximum"><number>180</number></property></widget></item> <!-- 直射阳光滑条 -->
+               <item><widget class="QLabel" name="sunIntensityLabel"><property name="text"><string>1.00</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 阳光强度数值 -->
+              </layout> <!-- 结束阳光行 -->
+             </item> <!-- 结束阳光项 -->
+             <item row="9" column="0"><widget class="QLabel" name="sunCaption"><property name="text"><string>海面反射</string></property></widget></item> <!-- 海面反射标签 -->
+             <item row="9" column="1"> <!-- 海面反射这一行 -->
+              <layout class="QHBoxLayout" name="sunRow"> <!-- 反射行布局 -->
+               <item><widget class="QSlider" name="sunSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>0</number></property><property name="maximum"><number>200</number></property></widget></item> <!-- 海面反射滑条 -->
+               <item><widget class="QLabel" name="sunLabel"><property name="text"><string>1.00</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 反射强度数值 -->
+              </layout> <!-- 结束反射行 -->
+             </item> <!-- 结束反射项 -->
+             <item row="10" column="0"><widget class="QLabel" name="highlightCaption"><property name="text"><string>高光宽度</string></property></widget></item> <!-- 高光宽度标签 -->
+             <item row="10" column="1"> <!-- 高光宽度这一行 -->
+              <layout class="QHBoxLayout" name="highlightRow"> <!-- 高光行布局 -->
+               <item><widget class="QSlider" name="highlightSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>35</number></property><property name="maximum"><number>220</number></property></widget></item> <!-- 高光宽度滑条 -->
+               <item><widget class="QLabel" name="highlightLabel"><property name="text"><string>1.00</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 高光宽度数值 -->
+              </layout> <!-- 结束高光行 -->
+             </item> <!-- 结束高光项 -->
+             <item row="11" column="0"><widget class="QLabel" name="brightnessCaption"><property name="text"><string>海面亮度</string></property></widget></item> <!-- 海面亮度标签 -->
+             <item row="11" column="1"> <!-- 海面亮度这一行 -->
+              <layout class="QHBoxLayout" name="brightnessRow"> <!-- 亮度行布局 -->
+               <item><widget class="QSlider" name="brightnessSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>40</number></property><property name="maximum"><number>160</number></property></widget></item> <!-- 海面亮度滑条 -->
+               <item><widget class="QLabel" name="brightnessLabel"><property name="text"><string>1.00</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 亮度数值 -->
+              </layout> <!-- 结束亮度行 -->
+             </item> <!-- 结束亮度项 -->
+             <item row="12" column="0"><widget class="QLabel" name="skySaturationCaption"><property name="text"><string>天空饱和度</string></property></widget></item> <!-- 天空饱和度标签 -->
+             <item row="12" column="1"> <!-- 天空饱和度这一行 -->
+              <layout class="QHBoxLayout" name="skySaturationRow"> <!-- 饱和度行布局 -->
+               <item><widget class="QSlider" name="skySaturationSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>40</number></property><property name="maximum"><number>160</number></property></widget></item> <!-- 天空饱和度滑条 -->
+               <item><widget class="QLabel" name="skySaturationLabel"><property name="text"><string>1.12</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 饱和度数值 -->
+              </layout> <!-- 结束饱和度行 -->
+             </item> <!-- 结束饱和度项 -->
+             <item row="13" column="0"><widget class="QLabel" name="skyBrightnessCaption"><property name="text"><string>天空亮度</string></property></widget></item> <!-- 天空亮度标签 -->
+             <item row="13" column="1"> <!-- 天空亮度这一行 -->
+              <layout class="QHBoxLayout" name="skyBrightnessRow"> <!-- 天空亮度行布局 -->
+               <item><widget class="QSlider" name="skyBrightnessSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>60</number></property><property name="maximum"><number>140</number></property></widget></item> <!-- 天空亮度滑条 -->
+               <item><widget class="QLabel" name="skyBrightnessLabel"><property name="text"><string>1.06</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 天空亮度数值 -->
+              </layout> <!-- 结束天空亮度行 -->
+             </item> <!-- 结束天空亮度项 -->
+             <item row="14" column="0"><widget class="QLabel" name="hazeCaption"><property name="text"><string>大气雾化</string></property></widget></item> <!-- 大气雾化标签 -->
+             <item row="14" column="1"> <!-- 大气雾化这一行 -->
+              <layout class="QHBoxLayout" name="hazeRow"> <!-- 雾化行布局 -->
+               <item><widget class="QSlider" name="hazeSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>0</number></property><property name="maximum"><number>160</number></property></widget></item> <!-- 大气雾化滑条 -->
+               <item><widget class="QLabel" name="hazeLabel"><property name="text"><string>0.08</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 雾化数值 -->
+              </layout> <!-- 结束雾化行 -->
+             </item> <!-- 结束雾化项 -->
+             <item row="15" column="0"><widget class="QLabel" name="sunDiskCaption"><property name="text"><string>太阳盘亮度</string></property></widget></item> <!-- 太阳盘亮度标签 -->
+             <item row="15" column="1"> <!-- 太阳盘这一行 -->
+              <layout class="QHBoxLayout" name="sunDiskRow"> <!-- 太阳盘行布局 -->
+               <item><widget class="QSlider" name="sunDiskSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>0</number></property><property name="maximum"><number>250</number></property></widget></item> <!-- 太阳盘滑条 -->
+               <item><widget class="QLabel" name="sunDiskLabel"><property name="text"><string>1.40</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 太阳盘数值 -->
+              </layout> <!-- 结束太阳盘行 -->
+             </item> <!-- 结束太阳盘项 -->
+             <item row="16" column="0"><widget class="QLabel" name="sunHaloCaption"><property name="text"><string>太阳光晕强度</string></property></widget></item> <!-- 太阳光晕强度标签 -->
+             <item row="16" column="1"> <!-- 光晕强度这一行 -->
+              <layout class="QHBoxLayout" name="sunHaloRow"> <!-- 光晕强度行布局 -->
+               <item><widget class="QSlider" name="sunHaloSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>0</number></property><property name="maximum"><number>200</number></property></widget></item> <!-- 光晕强度滑条 -->
+               <item><widget class="QLabel" name="sunHaloLabel"><property name="text"><string>0.28</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 光晕强度数值 -->
+              </layout> <!-- 结束光晕强度行 -->
+             </item> <!-- 结束光晕强度项 -->
+             <item row="17" column="0"><widget class="QLabel" name="sunHaloRadiusCaption"><property name="text"><string>太阳光晕半径</string></property></widget></item> <!-- 太阳光晕半径标签 -->
+             <item row="17" column="1"> <!-- 光晕半径这一行 -->
+              <layout class="QHBoxLayout" name="sunHaloRadiusRow"> <!-- 光晕半径行布局 -->
+               <item><widget class="QSlider" name="sunHaloRadiusSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>15</number></property><property name="maximum"><number>250</number></property></widget></item> <!-- 光晕半径滑条 -->
+               <item><widget class="QLabel" name="sunHaloRadiusLabel"><property name="text"><string>0.45</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 光晕半径数值 -->
+              </layout> <!-- 结束光晕半径行 -->
+             </item> <!-- 结束光晕半径项 -->
+             <item row="18" column="0"><widget class="QLabel" name="horizonHazeCaption"><property name="text"><string>海平线雾化</string></property></widget></item> <!-- 海平线雾化标签 -->
+             <item row="18" column="1"> <!-- 海平线雾化这一行 -->
+              <layout class="QHBoxLayout" name="horizonHazeRow"> <!-- 海平线行布局 -->
+               <item><widget class="QSlider" name="horizonHazeSlider"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="minimum"><number>0</number></property><property name="maximum"><number>160</number></property></widget></item> <!-- 海平线雾化滑条 -->
+               <item><widget class="QLabel" name="horizonHazeLabel"><property name="text"><string>0.10</string></property><property name="minimumSize"><size><width>64</width><height>0</height></size></property></widget></item> <!-- 海平线雾化数值 -->
+              </layout> <!-- 结束海平线行 -->
+             </item> <!-- 结束海平线项 -->
+             <item row="19" column="0"><widget class="QLabel" name="waterColorCaption"><property name="text"><string>海面颜色</string></property></widget></item> <!-- 海面颜色标签 -->
+             <item row="19" column="1"> <!-- 海面颜色这一行 -->
+              <layout class="QHBoxLayout" name="waterColorRow"> <!-- 海面颜色行布局 -->
+               <item><widget class="QPushButton" name="waterColorButton"><property name="text"><string>主题颜色</string></property></widget></item> <!-- 海面颜色按钮，默认文案为主题颜色 -->
+               <item><widget class="QPushButton" name="waterResetButton"><property name="text"><string>恢复主题</string></property></widget></item> <!-- 恢复海面主题色 -->
+              </layout> <!-- 结束海面颜色行 -->
+             </item> <!-- 结束海面颜色项 -->
+             <item row="20" column="0"><widget class="QLabel" name="skyColorCaption"><property name="text"><string>天空颜色</string></property></widget></item> <!-- 天空颜色标签 -->
+             <item row="20" column="1"> <!-- 天空颜色这一行 -->
+              <layout class="QHBoxLayout" name="skyColorRow"> <!-- 天空颜色行布局 -->
+               <item><widget class="QPushButton" name="skyColorButton"><property name="text"><string>主题颜色</string></property></widget></item> <!-- 天空颜色按钮，默认文案为主题颜色 -->
+               <item><widget class="QPushButton" name="skyResetButton"><property name="text"><string>恢复主题</string></property></widget></item> <!-- 恢复天空主题色 -->
+              </layout> <!-- 结束天空颜色行 -->
+             </item> <!-- 结束天空颜色项 -->
+             <item row="21" column="0"><widget class="QLabel" name="videoPathCaption"><property name="text"><string>视频文件</string></property></widget></item> <!-- 视频文件标签 -->
+             <item row="21" column="1"> <!-- 视频路径这一行 -->
+              <layout class="QHBoxLayout" name="videoPathRow"> <!-- 路径行布局 -->
+               <item><widget class="QLineEdit" name="videoPathEdit"><property name="placeholderText"><string>选择本地 MP4、MOV、AVI 或 MKV</string></property></widget></item> <!-- 视频路径输入框 -->
+               <item><widget class="QPushButton" name="videoBrowseButton"><property name="text"><string>浏览</string></property></widget></item> <!-- 浏览本地视频 -->
+              </layout> <!-- 结束路径行 -->
+             </item> <!-- 结束路径项 -->
+             <item row="22" column="1"><widget class="QCheckBox" name="videoLoopCheck"><property name="text"><string>循环播放</string></property><property name="checked"><bool>true</bool></property></widget></item> <!-- 循环播放，默认勾选 -->
+             <item row="23" column="1"><widget class="QCheckBox" name="videoMuteCheck"><property name="text"><string>静音播放</string></property><property name="checked"><bool>true</bool></property></widget></item> <!-- 静音播放，默认勾选 -->
+             <item row="24" column="0" colspan="2"><widget class="QLabel" name="videoHint"><property name="wordWrap"><bool>true</bool></property><property name="text"><string>视频画面画进现有壁纸窗口，不另开播放器，也不覆盖图标和任务栏。停止壁纸后释放解码器。没有随程序提供海洋视频，请使用你有权播放的本地文件。</string></property></widget></item> <!-- 视频模式说明 -->
+            </layout> <!-- 结束动画表单 -->
+           </widget> <!-- 结束滚动内容 -->
+          </widget> <!-- 结束滚动区 -->
+         </item> <!-- 结束滚动项 -->
+        </layout> <!-- 结束动画页布局 -->
+       </widget> <!-- 结束动画页 -->
+       <widget class="QWidget" name="performancePage"> <!-- 性能页部件 -->
+        <layout class="QFormLayout" name="performanceForm"> <!-- 性能表单 -->
+         <item row="0" column="0"><widget class="QLabel" name="perfQualityCaption"><property name="text"><string>渲染质量</string></property></widget></item> <!-- 渲染质量标签 -->
+         <item row="0" column="1"><widget class="QComboBox" name="settingsQualityCombo"/></item> <!-- 质量下拉框 -->
+         <item row="1" column="0"><widget class="QLabel" name="perfFpsCaption"><property name="text"><string>目标帧率</string></property></widget></item> <!-- 目标帧率标签 -->
+         <item row="1" column="1"><widget class="QComboBox" name="settingsFpsCombo"/></item> <!-- 帧率下拉框 -->
+         <item row="2" column="0" colspan="2"><widget class="QCheckBox" name="pauseFullscreenCheck"><property name="text"><string>全屏应用运行时暂停动画</string></property></widget></item> <!-- 全屏时暂停动画 -->
+         <item row="3" column="0"><widget class="QLabel" name="batteryCaption"><property name="text"><string>使用电池时</string></property></widget></item> <!-- 电池策略标签 -->
+         <item row="3" column="1"><widget class="QComboBox" name="batteryCombo"/></item> <!-- 电池策略下拉框 -->
+         <item row="4" column="0" colspan="2"><widget class="QLabel" name="performanceHint"><property name="wordWrap"><bool>true</bool></property><property name="text"><string>低、中、高画质会改变海浪层数和网格密度。全屏判断覆盖无边框全屏，不会把普通最大化窗口当成全屏。</string></property></widget></item> <!-- 画质与全屏判断说明 -->
+        </layout> <!-- 结束性能表单 -->
+       </widget> <!-- 结束性能页 -->
+       <widget class="QWidget" name="startupPage"> <!-- 开机启动页 -->
+        <layout class="QVBoxLayout" name="startupLayout"> <!-- 启动页垂直布局 -->
+         <item><widget class="QCheckBox" name="autostartCheck"><property name="text"><string>登录 Windows 时启动 OceanLive</string></property></widget></item> <!-- 登录时启动 -->
+         <item><widget class="QLabel" name="autostartPathLabel"><property name="wordWrap"><bool>true</bool></property><property name="text"><string>启动项</string></property></widget></item> <!-- 启动项命令说明 -->
+         <item><widget class="QLabel" name="autostartHint"><property name="wordWrap"><bool>true</bool></property><property name="text"><string>启动项只写入当前用户的 HKCU\Software\Microsoft\Windows\CurrentVersion\Run，名称为 OceanLive。关闭时只删除这一项。</string></property></widget></item> <!-- 注册表写入范围说明 -->
+         <item><spacer name="startupSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property></spacer></item> <!-- 启动页底部弹簧 -->
+        </layout> <!-- 结束启动页布局 -->
+       </widget> <!-- 结束启动页 -->
+       <widget class="QWidget" name="aboutPage"> <!-- 关于页 -->
+        <layout class="QVBoxLayout" name="aboutLayout"> <!-- 关于页垂直布局 -->
+         <item><widget class="QLabel" name="aboutText"><property name="wordWrap"><bool>true</bool></property><property name="textInteractionFlags"><enum>Qt::TextSelectableByMouse</enum></property><property name="text"><string>OceanLive</string></property></widget></item> <!-- 关于文字，可用鼠标选择 -->
+        </layout> <!-- 结束关于布局 -->
+       </widget> <!-- 结束关于页 -->
+      </widget> <!-- 结束页面堆叠 -->
+     </item> <!-- 结束右侧项 -->
+    </layout> <!-- 结束左右分栏 -->
+   </item> <!-- 结束主体项 -->
+   <item> <!-- 按钮区项 -->
+    <widget class="QDialogButtonBox" name="buttonBox"> <!-- 确定、取消和应用按钮 -->
+     <property name="standardButtons"><set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set></property> <!-- 标准按钮集合 -->
+    </widget> <!-- 结束按钮盒 -->
+   </item> <!-- 结束按钮项 -->
+  </layout> <!-- 结束对话框布局 -->
+ </widget> <!-- 结束设置对话框 -->
+ <resources/> <!-- 无额外资源 -->
+ <connections/> <!-- 无设计器信号连接 -->
+</ui> <!-- 结束界面文件 -->
