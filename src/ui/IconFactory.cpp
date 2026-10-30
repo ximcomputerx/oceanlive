@@ -49,7 +49,11 @@ QImage squareIcon() { // 去掉近黑底并裁成正方形
 } // 结束匿名命名空间
 
 QIcon IconFactory::appIcon() { // 托盘和窗口共用这一套
-    const QImage source = squareIcon(); // 去底并裁成正方形的原图
+    const QIcon stored(QStringLiteral(":/icons/app.ico")); // 与 exe 里同一份多尺寸图标
+    if (!stored.pixmap(32).isNull()) { // 读得出图像才用，避免把窗口图标清掉
+        return stored; // 标题栏、任务栏和托盘按尺寸选取
+    } // 结束 ico 可用
+    const QImage source = squareIcon(); // 没有 ico 时退回 png
     QIcon icon; // 多尺寸图标
     if (source.isNull()) { // 没有可用原图
         return icon; // 返回空图标

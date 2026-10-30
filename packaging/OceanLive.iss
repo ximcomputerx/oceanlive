@@ -18,6 +18,7 @@ SolidCompression=yes ; 打开固实压缩
 ArchitecturesAllowed=x64compatible ; 只允许 64 位系统
 ArchitecturesInstallIn64BitMode=x64compatible ; 按 64 位模式安装
 WizardStyle=modern ; 使用现代安装向导
+SetupIconFile=..\resources\icons\app.ico ; 安装包和卸载程序的图标
 
 [Files] ; 要复制的文件
 Source: "{#BuildDir}\*"; DestDir: "{app}"; Flags: recursesubdirs ignoreversion ; 递归复制整个 Release 目录

@@ -48,6 +48,21 @@ set(OCEANLIVE_SOURCES # 主程序源文件
 add_executable(OceanLive WIN32 ${OCEANLIVE_SOURCES}) # 窗口程序，不带控制台
 target_include_directories(OceanLive PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src) # 私有包含 src
 
+if(WIN32) # 外壳只认 exe 里的图标资源，不认 Qt 的 png
+    enable_language(RC) # 编译 Windows 资源脚本
+    set(OCEANLIVE_ICON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/resources/icons/app.ico") # 多尺寸图标
+    string(REPLACE "\\" "/" OCEANLIVE_ICON_PATH "${OCEANLIVE_ICON_PATH}") # 资源编译器按正斜杠找文件
+    configure_file( # 把绝对路径写进脚本，构建目录里也能找到图标
+        "${CMAKE_CURRENT_SOURCE_DIR}/resources/app.rc.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/app.rc"
+        @ONLY
+    ) # 结束生成资源脚本
+    target_sources(OceanLive PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/app.rc") # 编号 1 的图标给资源管理器和快捷方式
+    set_source_files_properties("${CMAKE_CURRENT_BINARY_DIR}/app.rc" PROPERTIES # 图标变了就重新编译资源
+        OBJECT_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/resources/icons/app.ico"
+    ) # 结束图标依赖
+endif() # 结束 Windows 图标
+
 get_filename_component(OCEANLIVE_QT_PREFIX "${Qt6_DIR}/../../.." ABSOLUTE) # 由 Qt6_DIR 回推前缀，不写死盘符
 set(OCEANLIVE_QT_TRANSLATIONS "${OCEANLIVE_QT_PREFIX}/translations") # Qt 自带翻译所在目录
 if(NOT EXISTS "${OCEANLIVE_QT_TRANSLATIONS}/qtbase_zh_CN.qm" OR NOT EXISTS "${OCEANLIVE_QT_TRANSLATIONS}/qtbase_en.qm") # 中英基础翻译必须都在
